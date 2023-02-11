@@ -1,7 +1,8 @@
 // imports
 import bcrypt from "bcrypt";
 
-// Utils
+// middleware
+import { generateToken } from "../middleware/token.js";
 
 // Models
 import { User } from "../models/index.js";
@@ -92,7 +93,7 @@ export const signin = async (email, password) => {
   }
 
   // 5) Generate authentication tokens
-  //   const tokens = await generateAuthTokens(user);
+  const tokens = generateToken(user._id);
 
   // 6) Remove the password from the output
   user.password = undefined;
@@ -103,5 +104,6 @@ export const signin = async (email, password) => {
     statusCode: 200,
     message: "Login Sucessfull",
     user,
+    tokens,
   };
 };

@@ -20,7 +20,7 @@ const sendErrorProd = async (err, req, res) => {
     });
   }
 
-  // B) Programming or other unknown error: don't leak error details
+  // B) Programming or other unknown error
   // 1) Log error
   logger.error("ERROR 💥", err);
   // 2) Send generic message

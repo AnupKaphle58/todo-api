@@ -1,5 +1,3 @@
-// Utils
-
 // Services
 import { authService } from "../services/index.js";
 
@@ -30,7 +28,7 @@ export const signin = async (req, res) => {
   const { email, password } = req.body;
 
   // 1) Calling sign in service
-  const { type, message, statusCode, user } = await authService.signin(
+  const { type, message, statusCode, user, tokens } = await authService.signin(
     email,
     password
   );
@@ -43,20 +41,25 @@ export const signin = async (req, res) => {
     });
   }
   // 3) If everything is OK, send data
-  return (
-    res
-      // .cookie("access_token", tokens.accessToken, {
-      //   httpOnly: true,
-      //   secure: false,
-      //   path: "/",
-      //   maxAge: 24 * 60 * 60 * 1000,
-      //   sameSite: false,
-      // })
-      .status(statusCode)
-      .json({
-        type,
-        message: message,
-        user,
-      })
-  );
+  return res
+    .cookie("token", tokens, {
+      httpOnly: true,
+      secure: false,
+      path: "/",
+      maxAge: 60 * 1000 * 5,
+      sameSite: false,
+    })
+    .status(statusCode)
+    .json({
+      type,
+      message: message,
+      user,
+    });
+};
+
+export const logout = (req, res) => {
+  return res.clearCookie("token").status(200).json({
+    type: "success",
+    message: "You have been logged out successfully.",
+  });
 };

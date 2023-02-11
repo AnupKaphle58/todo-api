@@ -1,8 +1,8 @@
 //packages
 import express from "express";
+import cookieParser from "cookie-parser";
 
 //configs
-import config from "./config/config.js";
 import { successHandle, errorHandle } from "./config/morgan.js";
 
 //middlewares
@@ -16,13 +16,16 @@ import routes from "./routes/index.js";
 
 const app = express();
 
+//Cookie parser
+app.use(cookieParser());
+
 // Morgan Handler
 app.use(successHandle);
 app.use(errorHandle);
 
 // Set Body parser, reading data from body into req.body
-app.use(express.json({ limit: "10kb" }));
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // API Routes
 app.use("/api", routes);
