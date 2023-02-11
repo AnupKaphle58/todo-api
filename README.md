@@ -9,9 +9,9 @@ This is a basic todo api with authentication. Built with express.js.
   - SignUp [Public]
   - Tokens [User]
 - Task
-  -View task[Public]
-  -Create task[User]
-  -Update task [User]
+  - View task[Public]
+  - Create task[User]
+  - Update task [User]
 
 ## Built With
 
