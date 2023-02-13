@@ -13,6 +13,11 @@ This is a basic todo api with authentication. Built with express.js.
   - Create task[User]
   - Update task [User]
 
+## Run the server
+
+- cd /src
+- node server.js
+
 ## Built With
 
 List of any major frameworks used to build the project.
