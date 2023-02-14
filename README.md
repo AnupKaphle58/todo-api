@@ -15,8 +15,11 @@ This is a basic todo api with authentication. Built with express.js.
 
 ## Run the server
 
-- cd /src
-- node server.js
+```
+npm install
+cd /src
+node server.js
+```
 
 ## Built With
 
